@@ -5,4 +5,7 @@
             <x-posts.list-item :post="$post" />
         @endforeach
     </div>
+    <div class="mt-2">
+        {{ $posts->links() }}
+    </div>
 </x-app-layout>
