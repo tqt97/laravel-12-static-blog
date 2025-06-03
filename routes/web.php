@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostIndexController;
+use App\Http\Controllers\PostShowController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', PostIndexController::class)->name('posts.index');
+Route::get('/{post}', PostShowController::class)->name('posts.show');
