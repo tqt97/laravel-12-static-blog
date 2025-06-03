@@ -12,6 +12,7 @@
         "php": "^8.2",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "league/commonmark": "^2.7",
         "spatie/laravel-markdown": "^2.7",
         "spatie/sheets": "^1.12"
     },
