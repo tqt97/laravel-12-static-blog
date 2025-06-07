@@ -7,24 +7,65 @@ html {
 }
 
 .toc {
-        font-size: 0.875rem;
-        line-height: 1.5;
-    }
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
 
-    .toc ul {
-        list-style: none;
-        padding-left: 0;
-    }
+.toc ul {
+    list-style: none;
+    padding-left: 0;
+}
 
-    .toc li {
-        margin-bottom: 0.25rem;
-    }
+.toc li {
+    margin-bottom: 0.25rem;
+}
 
-    .toc a {
-        color: #374151;
-        text-decoration: none;
-    }
+.toc a {
+    color: #374151;
+    text-decoration: none;
+}
 
-    .toc a:hover {
-        color: #2563eb;
-    }
+.toc a:hover {
+    color: #2563eb;
+}
+
+.prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.content .prose h2,
+.content .prose h3,
+.content .prose h4,
+.content .prose h5,
+.content .prose h6 {
+  position: relative;
+}
+
+.content .prose h2::after,
+.content .prose h3::after,
+.content .prose h4::after,
+.content .prose h5::after,
+.content .prose h6::after {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-image: url('/public/assets/images/link.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.content .prose h2:hover::after,
+.content .prose h3:hover::after,
+.content .prose h4:hover::after,
+.content .prose h5:hover::after,
+.content .prose h6:hover::after {
+  opacity: 1;
+}

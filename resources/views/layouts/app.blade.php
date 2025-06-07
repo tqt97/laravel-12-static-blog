@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8">
@@ -14,11 +14,12 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('css')
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        {{-- @include('layouts.navigation') --}}
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 mx-auto w-full relative1">
+        @include('layouts.navigation')
 
         <!-- Page Heading -->
         @isset($header)
@@ -29,53 +30,34 @@
             </header>
         @endisset
 
-        <header class="bg-white dark:bg-gray-800 shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <a href="{{ route('posts.index') }}"
-                    class="inline-block text-2xl font-extrabold hover:text-blue-500 transition-colors duration-100">
-                    {{ config('app.name') }}</a>
-            </div>
-        </header>
         <!-- Page Content -->
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <main class="mt-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 min-h-vh rounded-md relative1">
+            <main class="relative bg-white px-4 mt-8 py-6 mx-auto rounded-md">
                 {{ $slot }}
+                @isset($toc)
+                    {{ $toc }}
+                @endisset
             </main>
         </div>
     </div>
-</body>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('pre > code').forEach((block, i) => {
-            const button = document.createElement('button');
-            button.textContent = 'Copy';
-            button.style.position = 'absolute';
-            button.style.top = '5px';
-            button.style.right = '5px';
-            button.style.padding = '2px 8px';
-            button.style.fontSize = '12px';
-            button.style.cursor = 'pointer';
-            button.style.borderRadius = '4px';
-            button.style.border = '1px solid rgb(62 62 62)';
-            button.style.color = '#cecece';
-
-            const wrapper = document.createElement('div');
-            wrapper.style.position = 'relative';
-
-            const pre = block.parentElement;
-            pre.parentElement.replaceChild(wrapper, pre);
-            wrapper.appendChild(pre);
-            wrapper.appendChild(button);
-
-            button.addEventListener('click', () => {
-                navigator.clipboard.writeText(block.innerText).then(() => {
-                    button.textContent = 'Copied!';
-                    setTimeout(() => button.textContent = 'Copy', 1000);
-                });
+    <x-back-to-top />
+    <script>
+        window.addEventListener('scroll', function () {
+            const button = document.getElementById('backToTop');
+            if (window.scrollY > 150) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
+            }
+        });
+        document.getElementById('backToTop').addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
-    });
-</script>
-
+    </script>
+    @stack('js')
+</body>
 
 </html>
