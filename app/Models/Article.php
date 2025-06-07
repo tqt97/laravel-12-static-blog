@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Spatie\Sheets\Sheet;
 
-class Post extends Sheet
+class Article extends Sheet
 {
     // public function getUrlAttribute(): string
     // {

@@ -1,14 +1,14 @@
 <x-app-layout>
-    <x-posts.title>Latest posts</x-posts.title>
+    <x-articles.title>Latest article</x-articles.title>
 
     <ul class="grid grid-cols-1 xl:grid-cols-2 gap-y-5 gap-6 items-start">
-        @forelse ($posts as $post)
-            <x-posts.list :post="$post" />
+        @forelse ($articles as $article)
+            <x-articles.list :article="$article" />
         @empty
             <p>Nothing here yet.</p>
         @endforelse
     </ul>
     <div class="mt-8">
-        {{ $posts->links() }}
+        {{ $articles->links() }}
     </div>
 </x-app-layout>

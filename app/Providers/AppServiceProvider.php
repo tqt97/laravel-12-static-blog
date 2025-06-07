@@ -24,9 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Route::bind('post', function ($slug) {
+        Route::bind('article', function ($slug) {
             return $this->app->make(Sheets::class)
-                ->collection('posts')
+                ->collection('articles')
                 ->all()
                 ->where('slug', $slug)
                 ->first() ?? abort(404);

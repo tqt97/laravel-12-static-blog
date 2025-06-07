@@ -32,7 +32,7 @@
 
         <!-- Page Content -->
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 min-h-vh rounded-md relative1">
-            <main class="relative bg-white px-4 mt-8 py-6 mx-auto rounded-md">
+            <main class="relative mt-8 mx-auto rounded-md">
                 {{ $slot }}
                 @isset($toc)
                     {{ $toc }}
