@@ -21,3 +21,6 @@ require __DIR__.'/auth.php';
 Route::get('/', HomeController::class)->name('home');
 Route::get('articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('tags/{tag}/articles', TagShowController::class)->name('tags.show');
+
+// Search
+Route::get('/search/suggest', [HomeController::class, 'suggest'])->name('search.suggest');

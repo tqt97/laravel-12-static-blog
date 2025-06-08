@@ -40,3 +40,18 @@ if (! function_exists('parseSortOrder')) {
         return SortOrder::parse(strtolower($value ?? '')) ?? SortOrder::from(SortOrder::default());
     }
 }
+
+if (! function_exists('highlight')) {
+    function highlight(string $text, ?string $query): string
+    {
+        $text = e($text);
+        $query = e($query);
+
+        if (empty($query)) {
+            return $text;
+        }
+        $query = preg_quote($query, '/');
+
+        return preg_replace('/('.$query.')/i', '<mark>$1</mark>', $text);
+    }
+}

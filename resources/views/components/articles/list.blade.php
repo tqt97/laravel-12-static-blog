@@ -1,5 +1,5 @@
 <li class="group prose relative flex flex-col sm:flex-row xl:flex-col items-center">
-    <div class="order-1 sm:order-2 sm:ml-6 xl:ml-0">
+    <div class="order-1 sm:order-2 sm:ml-6 xl:ml-0 w-full">
         <div class="flex justify-between items-center gap-2">
             <div class="not-prose text-sm flex items-center gap-4 my-2">
                 <div class="flex items-1 gap-1">
@@ -41,7 +41,7 @@
         <h2 class="mb-1 text-slate-900 font-semibold not-prose">
             <a href="{{ route('articles.show', $article->slug) }}"
                 class="text-xl font-bold hover:text-blue-500 transition-colors duration-100 line-clamp-2">
-                {{ $article->title }}
+                {!! highlight($article->title, request('search')) !!}
             </a>
         </h2>
         <div class="prose prose-slate prose-sm text-slate-600 mt-2">
@@ -49,16 +49,6 @@
                 {{ $article->teaser }}
             </div>
         </div>
-        {{-- <a
-            class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 focus:ring-slate-500 mt-6"
-            href="">Learn
-            more<span class="sr-only">, Completely unstyled, fully accessible UI components</span>
-            <svg class="overflow-visible ml-3 text-slate-300 group-hover:text-slate-400" width="3" height="6"
-                viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M0 0L3 3L0 6"></path>
-            </svg>
-        </a> --}}
     </div>
     <a href="{{ route('articles.show', $article->slug) }}" title="{{ $article->title }}">
         <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*Z_qRZVnrEP9lyFXv" alt=""

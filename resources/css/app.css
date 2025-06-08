@@ -69,3 +69,13 @@ html {
 .content .prose h6:hover::after {
   opacity: 1;
 }
+
+mark {
+    background-color: #FFEB3B;
+    padding: 0 2px;
+    border-radius: 3px;
+}
+
+[x-cloak] {
+    display: none;
+}
