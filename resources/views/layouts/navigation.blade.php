@@ -5,8 +5,11 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home') }}">
+                    {{-- <a href="{{ route('home') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                    </a> --}}
+                    <a href="{{ route('home') }}" class="flex items-center bg-gray-900 shadow-md hover:bg-gray-800 hover:shadow-lg rounded-md">
+                        <span class="font-extrabold font-mono text-3xl py-1 px-3 text-white">T</span>
                     </a>
                 </div>
 
@@ -18,7 +21,9 @@
                         </x-nav-link>
                     @endauth
                     <div class="items-center flex">
-                        <input type="text" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-gray-500 dark:focus:border-gray-600 focus:ring-gray-500 dark:focus:ring-gray-600 rounded-md shadow-sm" placeholder="Search">
+                        <form method="GET" action="{{ route('home') }}" id="searchForm">
+                            <input type="text" name="search" id="search" value="{{ request('search') }}" class="w-full border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-gray-500 dark:focus:border-gray-600 focus:ring-gray-500 dark:focus:ring-gray-600 rounded-md shadow-sm" placeholder="Search" onchange="this.form.submit()">
+                        </form>
                     </div>
                     </div>
             </div>
@@ -69,7 +74,7 @@
                             @if (Route::has('register'))
                                 <a
                                     href="{{ route('register') }}"
-                                    class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-md text-sm leading-normal bg-gray-800 text-white hover:bg-gray-900 hover:shadow-lg">
+                                    class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-md text-sm leading-normal bg-gray-900 text-white hover:bg-gray-800 hover:shadow-lg">
                                     Register
                                 </a>
                             @endif
@@ -124,3 +129,14 @@
         </div>
     </div>
 </nav>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const url = new URL(window.location.href);
+    if (url.searchParams.has('search') && url.searchParams.get('search').trim() === '') {
+        url.searchParams.delete('search');
+        window.history.replaceState({}, '', url);
+    }
+});
+</script>

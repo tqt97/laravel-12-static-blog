@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const links = document.querySelectorAll('.scrollspy-link');
     const headings = Array.from(links).map(link => document.querySelector(link.getAttribute('href')));
+    console.log(headings);
 
     function onScroll() {
         const scrollTop = window.scrollY;
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 current = links[i];
             }
         }
-
+        console.log(current);
         links.forEach(link => link.classList.remove('text-blue-600'));
         if (current) current.classList.add('text-blue-600');
     }

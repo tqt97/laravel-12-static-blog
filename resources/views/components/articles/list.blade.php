@@ -1,4 +1,4 @@
-<li class="group prose my-4 relative flex flex-col sm:flex-row xl:flex-col items-center">
+<li class="group prose relative flex flex-col sm:flex-row xl:flex-col items-center">
     <div class="order-1 sm:order-2 sm:ml-6 xl:ml-0">
         <div class="flex justify-between items-center gap-2">
             <div class="not-prose text-sm flex items-center gap-4 my-2">
@@ -40,7 +40,9 @@
         </div>
         <h2 class="mb-1 text-slate-900 font-semibold not-prose">
             <a href="{{ route('articles.show', $article->slug) }}"
-                class="text-2xl font-bold hover:text-blue-500 transition-colors duration-100 line-clamp-2">{{ $article->title }}</a>
+                class="text-xl font-bold hover:text-blue-500 transition-colors duration-100 line-clamp-2">
+                {{ $article->title }}
+            </a>
         </h2>
         <div class="prose prose-slate prose-sm text-slate-600 mt-2">
             <div class="line-clamp-2">

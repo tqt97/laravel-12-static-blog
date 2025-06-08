@@ -19,5 +19,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/{article}', [ArticleController::class, 'show'])->name('articles.show');
-Route::get('/tags/{tag}', TagShowController::class)->name('tags.show');
+Route::get('articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('tags/{tag}/articles', TagShowController::class)->name('tags.show');
