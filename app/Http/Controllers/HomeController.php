@@ -8,8 +8,6 @@ use App\Enums\SortOrder;
 use App\Http\Requests\HomeRequest;
 use App\Models\Article;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -158,60 +156,10 @@ class HomeController extends Controller
     {
         return [
             't' => Str::lower($article->title),
-            'c' => Str::lower($article->contents),
-            'a' => Str::lower($article->author ?? ''),
+            // 'c' => Str::lower($article->contents),
+            // 'a' => Str::lower($article->author ?? ''),
             'g' => array_map('Str::lower', (array) $article->tags ?? []),
             'slug' => $article->slug,
         ];
-    }
-
-    /**
-     * Handles search suggestions via AJAX.
-     */
-    public function suggest(Request $request): JsonResponse
-    {
-        $query = $request->input('q', '');
-
-        logger()->debug('Suggest query', ['query' => $query]);
-
-        if (empty($query)) {
-            return response()->json([]);
-        }
-
-        $articles = $this->getCachedArticles();
-
-        $results = $articles->filter(function (Sheet $article) use ($query) {
-            $searchableContent = Str::lower(
-                $article->title
-                    .' '.$article->contents
-                    .' '.($article->author ?? '')
-                    .' '.implode(' ', (array) $article->tags ?? [])
-            );
-
-            return Str::contains($searchableContent, $query);
-        })->take(5);
-        logger()->debug('Suggest results', context: ['count' => $results->count()]);
-
-        return response()->json(
-            $results->map(fn ($article) => [
-                'title' => $this->highlightMatch($article->title, $query),
-                'url' => route('articles.show', $article->slug),
-                'excerpt' => Str::limit($article->contents, 100),
-            ])
-        );
-    }
-
-    /**
-     * Highlights the given query string in the given text string.
-     *
-     * The query string is case-insensitive.
-     *
-     * @param  string  $text  The text string to search and highlight.
-     * @param  string  $query  The query string to highlight.
-     * @return string The highlighted string.
-     */
-    private function highlightMatch(string $text, string $query): string
-    {
-        return preg_replace('/('.$query.')/i', '<mark>$1</mark>', e($text));
     }
 }

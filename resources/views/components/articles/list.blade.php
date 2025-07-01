@@ -20,16 +20,16 @@
                 </div>
             </div>
             @if (count($article->tags))
-                <div class="flex">
+                <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-4">
+                        stroke="currentColor" class="size-3">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5-3.9 19.5m-2.1-19.5-3.9 19.5" />
                     </svg>
-                    <ul class="not-prose px-1 list-none flex items-center divide-x divide-gray-200">
+                    <ul class="not-prose list-none flex items-center divide-gray-200 gap-1">
                         @foreach ($article->tags as $tag)
                             <li class="text-sm">
-                                <a href="{{ route('tags.show', $tag) }}" class="hover:text-blue-500 p-1">
+                                <a href="{{ route('tags.show', $tag) }}" class="text-blue-800 hover:text-blue-600">
                                     {{ Str::title($tag) }}
                                 </a>
                             </li>
@@ -53,6 +53,6 @@
     <a href="{{ route('articles.show', $article->slug) }}" title="{{ $article->title }}">
         <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*Z_qRZVnrEP9lyFXv" alt=""
             class="mb-1 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-2 xl:w-full group-hover:shadow-lg"
-            width="1216" height="640">
+            width="1200" height="630">
     </a>
 </li>
